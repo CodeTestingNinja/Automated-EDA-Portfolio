@@ -4,8 +4,8 @@ import pandas as pd
 import base64
 import io # <-- Import the io library
 import sys # <-- Import sys to capture df.info() output
-import matplotlib.pyplot as plt
-import seaborn as sns
+# import matplotlib.pyplot as plt
+# import seaborn as sns
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 
@@ -254,6 +254,11 @@ def analysis(request, tool_name=None):
 
 
     elif tool_name == 'viz_histogram':
+        import matplotlib
+        matplotlib.use('Agg') # Use the non-interactive 'Agg' backend
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+        
         context['partial_template_name'] = 'edaengine/analysis_partials/_viz_histogram.html'
 
         csv_b64 = request.session.get('csv_base64')
@@ -302,6 +307,11 @@ def analysis(request, tool_name=None):
     
 
     elif tool_name == 'viz_countplot':
+        import matplotlib
+        matplotlib.use('Agg') # Use the non-interactive 'Agg' backend
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+        
         context['partial_template_name'] = 'edaengine/analysis_partials/_viz_countplot.html'
 
         csv_b64 = request.session.get('csv_base64')
@@ -355,6 +365,11 @@ def analysis(request, tool_name=None):
     
 
     elif tool_name == 'viz_boxplot':
+        import matplotlib
+        matplotlib.use('Agg') # Use the non-interactive 'Agg' backend
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+        
         context['partial_template_name'] = 'edaengine/analysis_partials/_viz_boxplot.html'
         
         csv_b64 = request.session.get('csv_base64')
@@ -399,6 +414,11 @@ def analysis(request, tool_name=None):
 
 
     elif tool_name == 'viz_kdeplot':
+        import matplotlib
+        matplotlib.use('Agg') # Use the non-interactive 'Agg' backend
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+        
         context['partial_template_name'] = 'edaengine/analysis_partials/_viz_kdeplot.html'
         
         csv_b64 = request.session.get('csv_base64')
@@ -441,6 +461,11 @@ def analysis(request, tool_name=None):
 
 
     elif tool_name == 'viz_scatterplot':
+        import matplotlib
+        matplotlib.use('Agg') # Use the non-interactive 'Agg' backend
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+        
         context['partial_template_name'] = 'edaengine/analysis_partials/_viz_scatterplot.html'
 
         csv_b64 = request.session.get('csv_base64')
@@ -472,6 +497,11 @@ def analysis(request, tool_name=None):
     
 
     elif tool_name == 'viz_barplot':
+        import matplotlib
+        matplotlib.use('Agg') # Use the non-interactive 'Agg' backend
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+        
         context['partial_template_name'] = 'edaengine/analysis_partials/_viz_barplot.html'
 
         csv_b64 = request.session.get('csv_base64')
@@ -512,6 +542,11 @@ def analysis(request, tool_name=None):
 
 
     elif tool_name == 'viz_lineplot':
+        import matplotlib
+        matplotlib.use('Agg') # Use the non-interactive 'Agg' backend
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+        
         context['partial_template_name'] = 'edaengine/analysis_partials/_viz_lineplot.html'
         
         csv_b64 = request.session.get('csv_base64')
@@ -554,6 +589,11 @@ def analysis(request, tool_name=None):
 
 
     elif tool_name == 'viz_heatmap':
+        import matplotlib
+        matplotlib.use('Agg') # Use the non-interactive 'Agg' backend
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+        
         context['partial_template_name'] = 'edaengine/analysis_partials/_viz_heatmap.html'
 
         csv_b64 = request.session.get('csv_base64')
@@ -578,6 +618,11 @@ def analysis(request, tool_name=None):
 
 
     elif tool_name == 'viz_pairplot':
+        import matplotlib
+        matplotlib.use('Agg') # Use the non-interactive 'Agg' backend
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+        
         context['partial_template_name'] = 'edaengine/analysis_partials/_viz_pairplot.html'
 
         try:
@@ -644,6 +689,11 @@ def analysis(request, tool_name=None):
 
 
     elif tool_name == 'analysis_summary':
+        import matplotlib
+        matplotlib.use('Agg') # Use the non-interactive 'Agg' backend
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+        
         context['partial_template_name'] = 'edaengine/analysis_partials/_summary.html'
 
         csv_b64 = request.session.get('csv_base64')
