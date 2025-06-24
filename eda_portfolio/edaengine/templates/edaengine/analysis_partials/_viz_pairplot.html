@@ -1,0 +1,22 @@
+<div class="page-header">
+    <h1>Pair Plots</h1>
+    <p>A pair plot creates a grid of scatterplots for each pair of numerical variables, with histograms on the diagonal. It provides a comprehensive overview of the relationships between all numerical variables.</p>
+</div>
+<hr>
+
+<div class="guidance-box">
+    <strong>⚠️ Warning:</strong> This plot can be slow to generate for datasets with many numerical columns (more than 10-15).
+</div>
+
+<div class="analysis-card">
+    <h3>Complete Pairwise Relationships</h3>
+    <!-- The plot-item-full-width class is now redundant because our new general
+         .analysis-card img rule will handle the responsive sizing. -->
+    {% if plot_b64 %}
+        <img src="data:image/png;base64, {{ plot_b64 }}" alt="Pair Plot of numerical variables">
+    {% else %}
+        <div class="no-plot-message">
+            Plot could not be generated. This typically requires at least two numerical columns in the dataset.
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,80 @@
+<div class="page-header">
+    <h1>Handle Missing Values</h1>
+    <p>Select a specific action for each column containing missing data. This allows for a more precise and effective data cleaning process.</p>
+</div>
+<hr>
+
+<!-- The Guidance Box -->
+<div class="guidance-box">
+    <h4>💡 When to use which method?</h4>
+    <ul>
+        <li><b>Drop Rows:</b> Quick and easy, but can lead to significant data loss if you have many missing values. Best used when the number of affected rows is very small.</li>
+        <li><b>Drop Column:</b> Use this for columns with a very high percentage of missing data (e.g., >50%) where the column itself is not critical for your analysis.</li>
+        <li><b>Fill with Mean:</b> Good for numerical data that is normally distributed (no major outliers). Very sensitive to outliers.</li>
+        <li><b>Fill with Median:</b> A safer choice for numerical data, especially if there are outliers.</li>
+        <li><b>Fill with Mode:</b> The best choice for categorical (text-based) data.</li>
+    </ul>
+</div>
+
+<!-- The Flash Message for Undo -->
+{% if flash_message %}
+    <div class="flash-message success">
+        <span>{{ flash_message }}</span>
+        {% if request.session.previous_csv_base64 %}
+            <a href="{% url 'action_undo' %}" class="btn-undo-small">Undo</a>
+        {% endif %}
+    </div>
+{% endif %}
+
+<!-- Main Interactive Card -->
+<div class="analysis-card">
+    <h3>Interactive Column Actions</h3>
+    <form method="POST" action="{% url 'analysis_tool' tool_name='analysis_missing' %}">
+        {% csrf_token %}
+        <div class="table-responsive">
+            <table class="table interactive-table">
+                <thead>
+                    <tr>
+                        <th>Column Name</th>
+                        <th>Data Type</th>
+                        <th class="text-center">Missing Count</th>
+                        <th class="text-center">Action to Apply</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for col_info in missing_info %}
+                        <tr>
+                            <td><strong>{{ col_info.name }}</strong></td>
+                            <td><span class="dtype-badge">{{ col_info.dtype }}</span></td>
+                            <td class="text-center">{{ col_info.missing_count }}</td>
+                            <td>
+                                <select class="form-control" name="action_{{ col_info.name }}">
+                                    <option value="none">-- Do Nothing --</option>
+                                    <option value="drop_column" class="action-danger">Drop This Column</option>
+                                    <option value="drop_rows">Drop Rows</option>
+                                    {% if col_info.is_numeric %}
+                                        <option value="fill_mean">Fill with Mean</option>
+                                        <option value="fill_median">Fill with Median</option>
+                                    {% endif %}
+                                    <option value="fill_mode">Fill with Mode</option>
+                                </select>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center" style="padding: 40px;">No missing values found in the dataset. Congratulations!</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        {% if missing_info %}
+            <div class="form-actions">
+                <button type="submit" class="btn-apply-actions">
+                    <i class="fas fa-check"></i> Apply All Selected Actions
+                </button>
+            </div>
+        {% endif %}
+    </form>
+</div>

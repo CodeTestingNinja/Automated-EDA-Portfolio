@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'edaengine/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Analysis Workspace</title>
+</head>
+<body>
+    <div class="workspace-container">
+        
+        <!-- The Sidebar -->
+        <aside class="sidebar">
+            <h2>Analysis Tools</h2>
+            <nav class="main-nav">
+                <ul>
+                    {% include "edaengine/_menu_level.html" with items=tools %}
+                </ul>
+            </nav>
+            <!-- For the upload button -->
+            <div class="sidebar-footer">
+                <a href="{% url 'upload' %}" class="btn-upload">
+                    <i class="fas fa-upload"></i>
+                    <span>Upload New Dataset</span>
+                </a>
+                <a href="{% url 'action_download_csv' %}" class="btn-download-csv">
+                    <i class="fas fa-download"></i>
+                    <span>Download Cleaned CSV</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- The Main Content Area -->
+        <main class="main-content">
+            {% if partial_template_name %}
+                {% include partial_template_name %}
+            {% else %}
+                <h1>Welcome to the Analysis Workspace</h1>
+                <p>Select a tool from the sidebar to begin your analysis.</p>
+            {% endif %}
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const submenuToggles = document.querySelectorAll('.submenu-toggle');
+
+            submenuToggles.forEach(toggle => {
+                toggle.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const parentLi = this.parentElement;
+                    parentLi.classList.toggle('open');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

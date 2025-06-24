@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'edaengine/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Upload Dataset - EDA Tool</title>
+</head>
+<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh;">
+
+    <div class="upload-container">
+        <h1>Upload Your Dataset</h1>
+        <p class="upload-instructions">Please select a CSV (.csv) file to begin your analysis.</p>
+
+        <!-- Message Area for Success/Error -->
+        {% if message %}
+            <!-- We use the message content to decide the class -->
+            <div class="upload-message {% if '❌' in message %}error{% else %}success{% endif %}">
+                {{ message }}
+            </div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+            <div class="file-input-wrapper">
+                <!-- This is the styled label that the user sees and clicks -->
+                <label for="file-upload" class="file-upload-label">
+                    <i class="fas fa-file-csv"></i>
+                    <span id="file-name">Choose a file...</span>
+                </label>
+                <!-- This is the actual file input, which we will hide with CSS -->
+                <input type="file" id="file-upload" name="file" accept=".csv" onchange="updateFileName(this)">
+            </div>
+            <button type="submit" class="btn-upload-main">
+                <i class="fas fa-cogs"></i> Upload & Analyze
+            </button>
+        </form>
+
+        <div class="back-link">
+            <a href="{% url 'home' %}">← Back to Homepage</a>
+        </div>
+    </div>
+
+    <script>
+        function updateFileName(input) {
+            const fileNameSpan = document.getElementById('file-name');
+            if (input.files && input.files.length > 0) {
+                // Display the name of the selected file
+                fileNameSpan.textContent = input.files[0].name;
+            } else {
+                // Reset to the default text if no file is chosen
+                fileNameSpan.textContent = 'Choose a file...';
+            }
+        }
+    </script>
+</body>
+</html>

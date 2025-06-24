@@ -1,0 +1,935 @@
+/* ==========================================================================
+   1. Global Styles & Theme Variables (Palette 3: Warm & Approachable)
+   ========================================================================== */
+
+:root {
+    --bg-main: #FDFBF7;
+    --bg-content: #FFFFFF;
+    --text-primary: #3D3D3D;
+    --text-secondary: #5D5D5D;
+    --border-color: #EAEAEA;
+    --accent-primary: #4A55A2; /* Main Indigo */
+    --accent-primary-hover: #3A437D;
+    --accent-success: #2E7D32; /* Deep Green */
+    --accent-success-hover: #1b5e20;
+    --accent-danger: #C62828; /* Deep Red */
+    --accent-danger-hover: #b71c1c;
+    --accent-info: #546E7A; /* Blue Grey */
+    --accent-info-hover: #455A64;
+    --font-serif: 'Georgia', 'Times New Roman', serif;
+    --font-sans-serif: 'Helvetica Neue', 'Arial', sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-sans-serif);
+    margin: 0;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    color: #434190; /* Use the warmer indigo for titles */
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin: 2rem 0;
+}
+
+/* ==========================================================================
+   2. Homepage Styles
+   ========================================================================== */
+
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: var(--bg-content);
+    border-bottom: 1px solid var(--border-color);
+}
+.hero h1 {
+    font-size: 3.2em;
+    margin-bottom: 20px;
+}
+.hero p {
+    font-size: 1.2em;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+}
+.btn-start {
+    background-color: var(--accent-primary);
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+.btn-start:hover {
+    background-color: var(--accent-primary-hover);
+}
+.section {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 20px;
+}
+.section h2 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+.features-grid, .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+.feature-card, .tech-card {
+    background-color: var(--bg-content);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+.feature-card i {
+    font-size: 2.5em;
+    color: var(--accent-primary);
+    margin-bottom: 15px;
+}
+.feature-card h3, .tech-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+footer {
+    text-align: center;
+    padding: 30px;
+    margin-top: 40px;
+    background-color: var(--text-primary);
+    color: var(--bg-main);
+}
+footer a {
+    color: var(--accent-info);
+}
+
+/* ==========================================================================
+   2.5. Upload Page Styles
+   ========================================================================== */
+
+.upload-container {
+    max-width: 600px;
+    width: 100%;
+    margin: 20px;
+    padding: 40px;
+    background-color: var(--bg-content);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    text-align: center;
+}
+.upload-instructions {
+    color: var(--text-secondary);
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+.upload-form {
+    margin-top: 20px;
+}
+
+/* Custom File Input Styling */
+.file-input-wrapper {
+    margin-bottom: 25px;
+}
+.file-input-wrapper input[type="file"] {
+    display: none; /* Hide the default input */
+}
+.file-upload-label {
+    display: inline-block;
+    padding: 12px 20px;
+    border: 2px dashed var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1.1em;
+    color: var(--text-secondary);
+}
+.file-upload-label:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+.file-upload-label i {
+    margin-right: 10px;
+}
+
+/* Main Upload Button */
+.btn-upload-main {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: var(--accent-success);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.btn-upload-main:hover {
+    background-color: var(--accent-success-hover);
+}
+
+/* Messages */
+.upload-message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+}
+.upload-message.success {
+    color: #2E7D32;
+    background-color: #eaf6ea;
+    border-color: #d4ebd4;
+}
+.upload-message.error {
+    color: #C62828;
+    background-color: #fdecea;
+    border-color: #f8d7da;
+}
+
+/* Back Link */
+.back-link {
+    margin-top: 30px;
+}
+.back-link a {
+    text-decoration: none;
+    color: var(--text-secondary);
+}
+.back-link a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   3. Analysis Workspace: Main Layout & Sidebar
+   ========================================================================== */
+
+.workspace-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 80px;
+    background-color: var(--bg-content);
+    padding: 20px 0;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+    overflow-x: hidden;
+}
+.sidebar:hover {
+    width: 280px;
+}
+.sidebar h2 {
+    font-size: 1.2em;
+    text-align: center;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    color: var(--text-secondary);
+}
+.sidebar:hover h2 {
+    opacity: 1;
+    transition-delay: 0.1s;
+}
+
+/* --- Sidebar Navigation --- */
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.main-nav li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 25px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    font-weight: 500;
+}
+.main-nav li.active > a {
+    background-color: var(--accent-primary);
+    color: white;
+}
+.main-nav li:not(.active) a:hover {
+    background-color: #f5f5f5; /* A light, neutral hover */
+    color: var(--text-primary);
+}
+.main-nav li a i {
+    margin-right: 20px;
+    width: 30px;
+    font-size: 1.2em;
+    text-align: center;
+    color: var(--text-secondary);
+}
+.main-nav li.active > a i {
+    color: white;
+}
+.main-nav li:not(.active) a:hover i {
+    color: var(--accent-primary);
+}
+.main-nav li a span {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.sidebar:hover .main-nav li a span {
+    opacity: 1;
+    transition-delay: 0.1s;
+}
+.main-nav li a .a-right {
+    margin-left: auto;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+    opacity: 0;
+}
+.sidebar:hover .main-nav li a .a-right {
+    opacity: 1;
+    transition-delay: 0.1s;
+}
+.submenu {
+    list-style: none;
+    padding-left: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+    background-color: #fafafa;
+}
+li.has-submenu.open > .submenu-toggle .a-right {
+    transform: rotate(180deg);
+}
+li.has-submenu.open > .submenu {
+    max-height: 500px;
+}
+.submenu .submenu {
+    padding-left: 20px;
+}
+
+/* --- Sidebar Footer --- */
+.sidebar-footer {
+    margin-top: auto;
+    padding: 20px 0;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.btn-upload, .btn-download-csv {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 12px 25px;
+    margin: 0 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+.btn-upload {
+    border: 1px solid var(--accent-success);
+    color: var(--accent-success);
+}
+.btn-upload:hover {
+    background-color: var(--accent-success);
+    color: white;
+}
+.btn-download-csv {
+    background-color: var(--accent-info);
+    color: white;
+}
+.btn-download-csv:hover {
+    background-color: var(--accent-info-hover);
+}
+.btn-upload span, .btn-download-csv span {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.sidebar:hover .btn-upload span, .sidebar:hover .btn-download-csv span {
+    opacity: 1;
+    transition-delay: 0.1s;
+}
+
+/* ==========================================================================
+   4. Analysis Workspace: Main Content & Components
+   ========================================================================== */
+
+.main-content {
+    flex: 1;
+    padding: 30px 40px;
+    overflow-y: auto;
+}
+
+/* --- Cards (for visualizations) --- */
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.analysis-card {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    background-color: var(--bg-content);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.analysis-card h3 {
+    margin-top: 0;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+}
+.card-content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.card-stats {
+    flex: 1;
+}
+.card-plot {
+    flex: 1.5;
+}
+.card-plot img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+.plot-item-full-width {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+/* --- Tables (from Pandas) --- */
+table.dataframe {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.9em;
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+}
+table.dataframe thead tr {
+    background-color: var(--accent-primary);
+    color: white;
+    text-align: left;
+}
+table.dataframe th, table.dataframe td {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+}
+table.dataframe tbody tr:nth-of-type(even) {
+    background-color: #fafafa;
+}
+table.dataframe.table-sm th, table.dataframe.table-sm td {
+    padding: 0.5rem;
+    font-size: 0.9em;
+}
+
+/* --- Forms & Buttons --- */
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: flex-end;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-secondary);
+}
+.btn-apply-actions, button[type="submit"] {
+    background-color: var(--accent-success);
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.btn-apply-actions:hover, button[type="submit"]:hover {
+    background-color: var(--accent-success-hover);
+}
+
+/* --- Special Components --- */
+.guidance-box {
+    background-color: #f3f4f8;
+    border-left: 5px solid var(--accent-primary);
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+.flash-message.success {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    color: var(--accent-success);
+    background-color: #eaf6ea;
+    border: 1px solid #d4ebd4;
+}
+.btn-undo-small {
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--accent-success);
+    padding: 5px 10px;
+    border: 1px solid var(--accent-success);
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+.btn-undo-small:hover {
+    background-color: var(--accent-success);
+    color: white;
+}
+
+/* ==========================================================================
+   4.5. Initial Overview Page Specific Styles
+   ========================================================================== */
+
+.overview-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.page-header { /* Renamed from .overview-header */
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.page-header h1 {
+    margin-bottom: 0.5rem;
+}
+.page-header p {
+    font-size: 1.1em;
+    color: var(--text-secondary);
+}
+.overview-header h1 {
+    margin-bottom: 0.5rem;
+}
+.overview-header p {
+    font-size: 1.1em;
+    color: var(--text-secondary);
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Make the missing values column wider */
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.overview-card {
+    background-color: var(--bg-content);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-bottom: 25px; /* Add margin for cards stacked vertically */
+}
+
+/* Specific styling for the small stat cards */
+.overview-card .stat-big {
+    font-size: 2.5em;
+    font-weight: 600;
+    color: var(--accent-primary);
+    margin: 10px 0 0 0;
+    text-align: center;
+}
+.overview-card .stat-label {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-top: 0;
+}
+
+/* Centering table content as requested, but ONLY for this page */
+.overview-card table.dataframe thead th,
+.overview-card table.dataframe tbody td {
+    text-align: center;
+}
+
+.overview-card pre {
+    background-color: #f7fafc;
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    border-radius: 5px;
+    white-space: pre-wrap; /* Allow wrapping to prevent horizontal scroll */
+    word-wrap: break-word;
+    font-size: 0.9em;
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   4.6. Missing/Outlier Page Specific Styles
+   ========================================================================== */
+
+.page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.page-header h1 {
+    margin-bottom: 0.5rem;
+}
+.page-header p {
+    font-size: 1.1em;
+    color: var(--text-secondary);
+}
+
+.table-responsive {
+    overflow-x: auto; /* Adds horizontal scroll on small screens if needed */
+}
+
+.interactive-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.interactive-table th {
+    background-color: #f7fafc; /* Lighter header for this table */
+    padding: 12px 15px;
+    border-bottom: 2px solid var(--border-color);
+    text-align: left;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+.interactive-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+.interactive-table tbody tr:last-child td {
+    border-bottom: none;
+}
+.interactive-table .text-center {
+    text-align: center;
+}
+.dtype-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    background-color: #e2e8f0;
+    color: #4a5568;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-family: 'Courier New', Courier, monospace;
+}
+.interactive-table .form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--bg-content);
+}
+.action-danger {
+    color: var(--accent-danger);
+    font-weight: bold;
+}
+.form-actions {
+    text-align: right;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* ==========================================================================
+   Find and replace these rules in your style.css file
+   ========================================================================== */
+
+/* --- Upgraded Cards Container --- */
+.cards-container {
+    display: grid; /* Use grid for a more robust layout */
+    grid-template-columns: repeat(auto-fit, minmax(550px, 1fr)); /* Responsive grid */
+    gap: 25px; /* Space between cards */
+}
+
+/* --- Upgraded Analysis Card Table Styling --- */
+/* This rule targets ONLY tables inside an analysis card */
+.analysis-card table.dataframe thead tr {
+    background-color: #f7fafc; /* A very light, neutral header */
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+.analysis-card table.dataframe {
+    border: 1px solid var(--border-color);
+}
+.analysis-card table.dataframe th, 
+.analysis-card table.dataframe td {
+    text-align: left; /* Keep text aligned left for readability */
+    border-right: 1px solid var(--border-color);
+}
+.analysis-card table.dataframe th:first-child,
+.analysis-card table.dataframe td:first-child {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+
+/* --- General Table Styling (for things like the Summary page) --- */
+/* This style remains for other tables that are not in cards */
+table.dataframe {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.9em;
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+}
+table.dataframe thead tr {
+    background-color: var(--accent-primary);
+    color: white;
+    text-align: left;
+}
+table.dataframe th, table.dataframe td {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+}
+table.dataframe tbody tr:nth-of-type(even) {
+    background-color: #fafafa;
+}
+table.dataframe.table-sm th, table.dataframe.table-sm td {
+    padding: 0.5rem;
+    font-size: 0.9em;
+}
+
+/* --- Styling for Cards without a Plot --- */
+.analysis-card.no-plot .card-plot {
+    display: none; /* Completely hide the empty plot area */
+}
+
+.analysis-card.no-plot .card-stats {
+    flex-basis: 100%; /* Make the stats container take up the full width */
+    max-width: 100%;
+}
+
+/* This will style all <select> elements that have this class */
+.form-control {
+    width: 100%;
+    min-width: 200px; /* Give it a minimum width */
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--bg-content);
+    font-size: 1em;
+}
+
+/* Adds a bit of space above the plot when it appears */
+.plot-result-container {
+    margin-top: 30px;
+}
+
+.flash-message.danger {
+    color: var(--accent-danger);
+    background-color: #fdecea; /* A light red */
+    border-color: #f8d7da;
+}
+
+/* NEW, MORE GENERAL RULE FOR ALL IMAGES IN CARDS */
+.analysis-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    display: block; /* Helps prevent extra space below the image */
+    margin: 0 auto; /* Center the image if its container is wider */
+}
+
+/* ==========================================================================
+   5. Feedback Page Styles
+   ========================================================================== */
+
+.feedback-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: var(--bg-content);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+.form-group-feedback {
+    margin-bottom: 20px;
+}
+.form-group-feedback label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+.form-group-feedback input,
+.form-group-feedback select,
+.form-group-feedback textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    box-sizing: border-box;
+}
+.btn-submit-feedback {
+    background-color: var(--accent-primary);
+}
+.btn-submit-feedback:hover {
+    background-color: var(--accent-primary-hover);
+}
+
+/* ==========================================================================
+   5.5. Summary Page Specific Styles
+   ========================================================================== */
+
+/* Use the existing .analysis-card class for consistency */
+.summary-card {
+    background-color: var(--bg-content);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.summary-dist-plots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.summary-dist-plots img {
+    max-width: 48%; /* Allow two plots per row */
+    height: auto;
+}
+
+/* Helper class for centering text */
+.text-center {
+    text-align: center;
+}
+
+/* As requested, center the table content on this page */
+.summary-card table.dataframe th,
+.summary-card table.dataframe td {
+    text-align: center;
+}
+
+/* Style the download section to be centered as requested */
+.download-section {
+    margin-top: 30px;
+    padding: 30px;
+    background-color: #f7fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Ensure the buttons are styled consistently */
+.btn-download, .btn-finish {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.btn-download {
+    background-color: var(--accent-danger);
+    color: white;
+}
+.btn-download:hover {
+    background-color: var(--accent-danger-hover);
+}
+.btn-finish {
+    background-color: var(--accent-success);
+    color: white;
+}
+.btn-finish:hover {
+    background-color: var(--accent-success-hover);
+}
+
+.analysis-card table.dataframe th,
+.analysis-card table.dataframe td {
+    text-align: center;
+}
+
+/* For better readability, we can left-align the very first column (the index/labels) */
+.analysis-card table.dataframe th:first-child,
+.analysis-card table.dataframe td:first-child {
+    text-align: left;
+}
+
+/* ==========================================================================
+   Add this FINAL block of CSS to your style.css file
+   ========================================================================== */
+
+/* --- Styling for the "Big Number" Stat Cards --- */
+.analysis-card .stat-big {
+    font-family: var(--font-sans-serif); /* Use a modern sans-serif for numbers */
+    font-size: 2.8em;       /* The big font size */
+    font-weight: 600;       /* A nice bold weight */
+    color: var(--accent-primary); /* Use our theme's primary accent color */
+    margin: 15px 0 5px 0;   /* Add some spacing */
+    line-height: 1.1;       /* Adjust line height for large fonts */
+    display: block;         /* Ensure it takes its own line */
+}
+
+.analysis-card .stat-label {
+    font-family: var(--font-sans-serif);
+    font-size: 1em;
+    color: var(--text-secondary); /* Use our theme's secondary text color */
+    margin-top: 0;
+    display: block;
+}
+
+/* ==========================================================================
+   Add this final rule to style.css for consistent card headers
+   ========================================================================== */
+
+/* First, remove the old border-bottom from h3 to avoid a "double line" */
+.analysis-card h3 {
+    margin-top: 0;
+    /* DELETE THIS LINE: border-bottom: 2px solid var(--border-color); */
+    padding-bottom: 10px;
+}
+
+/* Now, add the new style for the <hr> inside a card */
+.analysis-card hr {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin: 1rem 0; /* A smaller margin for a tighter look inside the card */
+}
+
+/* The new h3 rule */
+.analysis-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem; /* Creates a small, consistent space below the text */
+    padding-bottom: 0; /* No extra padding space */
+}
+
+/* The new hr rule */
+.analysis-card hr {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    /* No top margin, but space below before the content starts */
+    margin: 0 0 1.5rem 0;
+}

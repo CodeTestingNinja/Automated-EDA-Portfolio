@@ -1,0 +1,46 @@
+<div class="page-header">
+    <h1>Outlier Handling</h1>
+    <p>Outliers can skew statistical analyses and machine learning models. Use these methods to treat extreme values in your numerical columns.</p>
+</div>
+<hr>
+
+<div class="guidance-box">
+    <h4>💡 About the Methods</h4>
+    <ul>
+        <li><b>Capping (Winsorizing):</b> Replaces extreme values with a specified percentile value. For example, capping at the 99th percentile replaces all values above this threshold with the 99th percentile value itself. This is less drastic than removing data.</li>
+        <li><b>Trimming:</b> Removes the rows containing the most extreme values. This is more direct but results in data loss.</li>
+    </ul>
+</div>
+
+{% if flash_message %}
+    <div class="flash-message success">
+        <span>{{ flash_message }}</span>
+        {% if request.session.previous_csv_base64 %}
+            <a href="{% url 'action_undo' %}" class="btn-undo-small">Undo</a>
+        {% endif %}
+    </div>
+{% endif %}
+
+<div class="analysis-card">
+    <form method="POST" action="{% url 'analysis_tool' tool_name='analysis_outliers' %}">
+        <h3>Global Outlier Treatment</h3>
+        <p>This action will be applied to all numerical columns in the dataset.</p>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="action">Select a method:</label>
+                <!-- Add the form-control class to the select element -->
+                <select name="action" id="action" class="form-control">
+                    <option value="cap_99">Cap outliers at 99th & 1st percentile</option>
+                    <option value="cap_95">Cap outliers at 95th & 5th percentile</option>
+                    <option value="trim_1">Trim top & bottom 1% of data</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label> </label>
+                <!-- Add the btn-apply-actions class to the button -->
+                <button type="submit" class="btn-apply-actions">Apply Action</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,49 @@
+<div class="page-header">
+    <h1>Scatter Plots</h1>
+    <p>Select two numerical variables to visualize their relationship. This helps identify trends, correlations, and potential outliers.</p>
+</div>
+<hr>
+
+<div class="analysis-card">
+    <form method="GET" action="{% url 'analysis_tool' tool_name='viz_scatterplot' %}">
+        <h3>Select Variables</h3>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="x_axis">Select X-Axis Variable:</label>
+                <!-- Add the form-control class to the select element -->
+                <select name="x_axis" id="x_axis" class="form-control">
+                    <option value="">-- Select --</option>
+                    {% for col in numerical_columns %}
+                        <option value="{{ col }}" {% if col == selected_x %}selected{% endif %}>{{ col }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="y_axis">Select Y-Axis Variable:</label>
+                <!-- Add the form-control class to the select element -->
+                <select name="y_axis" id="y_axis" class="form-control">
+                    <option value="">-- Select --</option>
+                    {% for col in numerical_columns %}
+                        <option value="{{ col }}" {% if col == selected_y %}selected{% endif %}>{{ col }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <!-- Add an empty label for vertical alignment -->
+                <label> </label>
+                <!-- Add the btn-apply-actions class to the button -->
+                <button type="submit" class="btn-apply-actions">Generate Plot</button>
+            </div>
+        </div>
+    </form>
+
+    {% if plot_b64 %}
+        <hr>
+        <div class="plot-result-container">
+            <h3>Result: {{ selected_x }} vs. {{ selected_y }}</h3>
+            <div class="plot-item-full-width">
+                <img src="data:image/png;base64, {{ plot_b64 }}" alt="Scatter plot of {{ selected_x }} vs {{ selected_y }}">
+            </div>
+        </div>
+    {% endif %}
+</div>

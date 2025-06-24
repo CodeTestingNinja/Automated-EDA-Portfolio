@@ -1,0 +1,70 @@
+<!-- feedback.html (Final Polished Version) -->
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'edaengine/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Feedback - EDA Tool</title>
+</head>
+<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh;">
+
+    <div class="feedback-container">
+        
+        <div class="page-header">
+            <h1>Thank You & Feedback</h1>
+            <p>You've reached the end of the analysis workflow. Your feedback is crucial for making this tool better.</p>
+        </div>
+        <hr>
+
+        {% if message %}
+            <!-- The Success Message -->
+            <div class="flash-message success text-center" style="flex-direction: column; gap: 15px;">
+                <h3>{{ message }}</h3>
+                <form method="GET" action="{% url 'home' %}">
+                    <button type="submit" class="btn-finish">
+                        <i class="fas fa-home"></i> Return to Homepage
+                    </button>
+                </form>
+            </div>
+        {% else %}
+            <!-- The Feedback Form Card -->
+            <div class="analysis-card">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">Your Name (Optional)</label>
+                        <input type="text" id="name" name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email (Optional)</label>
+                        <input type="email" id="email" name="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="rating">Overall Rating</label>
+                        <select id="rating" name="rating" class="form-control" required>
+                            <option value="">-- Please choose a rating --</option>
+                            <option value="5">★★★★★ - Excellent</option>
+                            <option value="4">★★★★☆ - Good</option>
+                            <option value="3">★★★☆☆ - Average</option>
+                            <option value="2">★★☆☆☆ - Fair</option>
+                            <option value="1">★☆☆☆☆ - Poor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="comments">Comments & Suggestions</label>
+                        <textarea id="comments" name="comments" class="form-control" style="min-height: 120px; resize: vertical;" required></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit-feedback">
+                            <i class="fas fa-paper-plane"></i> Submit Feedback
+                        </button>
+                    </div>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

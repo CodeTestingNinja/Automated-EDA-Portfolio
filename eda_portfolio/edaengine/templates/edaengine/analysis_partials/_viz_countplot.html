@@ -1,0 +1,31 @@
+<div class="page-header">
+    <h1>Count Plots</h1>
+    <p>A count plot shows the frequency of each category in a categorical variable.</p>
+    <p>A detailed breakdown of each categorical variable, including its count plot and key statistics</p>
+</div>
+<hr>
+
+<div class="cards-container">
+    {% for card in analysis_cards %}
+        <!-- THIS IS THE KEY CHANGE: We add a class if there is no plot -->
+        <div class="analysis-card {% if not card.plot_b64 %}no-plot{% endif %}">
+            <h3>{{ card.column_name }}</h3>
+            <div class="card-content">
+                <div class="card-stats">
+                    {{ card.stats_html|safe }}
+                </div>
+                <div class="card-plot">
+                    {% if card.plot_b64 %}
+                        <img src="data:image/png;base64, {{ card.plot_b64 }}" alt="Count Plot for {{ card.column_name }}">
+                    {% else %}
+                        <div class="no-plot-message">
+                            Plot not generated due to high cardinality (>{{ CARDINALITY_THRESHOLD }} unique values).
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No categorical columns found in the dataset.</p>
+    {% endfor %}
+</div>

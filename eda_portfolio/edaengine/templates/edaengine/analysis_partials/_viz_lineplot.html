@@ -1,0 +1,57 @@
+<div class="page-header">
+    <h1>Line Plots</h1>
+    <p>Select a date/time variable and a numerical variable to see how the numerical value changes over time.</p>
+</div>
+<hr>
+
+<div class="analysis-card">
+    <form method="GET" action="{% url 'analysis_tool' tool_name='viz_lineplot' %}">
+        <h3>Select Variables</h3>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="date_col">Select Date/Time Column (X-Axis):</label>
+                <!-- Add the form-control class -->
+                <select name="date_col" id="date_col" class="form-control">
+                    <option value="">-- Select --</option>
+                    {% for col in all_columns %}
+                        <option value="{{ col }}" {% if col == selected_date %}selected{% endif %}>{{ col }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="num_col">Select Numerical Column (Y-Axis):</label>
+                <!-- Add the form-control class -->
+                <select name="num_col" id="num_col" class="form-control">
+                    <option value="">-- Select --</option>
+                    {% for col in numerical_columns %}
+                        <option value="{{ col }}" {% if col == selected_num %}selected{% endif %}>{{ col }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label> </label>
+                <!-- Add the btn-apply-actions class -->
+                <button type="submit" class="btn-apply-actions">Generate Plot</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Handle the error message display -->
+    {% if error_message %}
+        <div class="flash-message danger">
+            <i class="fas fa-exclamation-triangle" style="margin-right: 10px;"></i>
+            {{ error_message }}
+        </div>
+    {% endif %}
+
+    <!-- Handle the plot display -->
+    {% if plot_b64 %}
+        <hr>
+        <div class="plot-result-container">
+            <h3>Result: {{ selected_num }} over Time</h3>
+            <div class="plot-item-full-width">
+                <img src="data:image/png;base64, {{ plot_b64 }}" alt="Line plot of {{ selected_num }} over {{ selected_date }}">
+            </div>
+        </div>
+    {% endif %}
+</div>

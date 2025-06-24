@@ -1,0 +1,17 @@
+<div class="page-header">
+    <h1>Correlation Heatmaps</h1>
+    <p>Shows the Pearson correlation between all numerical variables. Values range from -1 (perfect negative correlation) to +1 (perfect positive correlation). A value near 0 indicates no correlation.</p>
+</div>
+<hr>
+
+<div class="analysis-card">
+    <h3>Correlation Matrix</h3>
+    <!-- We add a check in case the plot couldn't be generated (e.g., < 2 numerical columns) -->
+    {% if plot_b64 %}
+        <img src="data:image/png;base64, {{ plot_b64 }}" alt="Correlation Heatmap">
+    {% else %}
+        <div class="no-plot-message">
+            Plot could not be generated. This typically requires at least two numerical columns in the dataset.
+        </div>
+    {% endif %}
+</div>

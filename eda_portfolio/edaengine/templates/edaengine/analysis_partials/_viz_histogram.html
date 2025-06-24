@@ -1,0 +1,24 @@
+<div class="page-header">
+    <h1>Histograms</h1>
+    <p>A detailed breakdown of each numerical variable, including its distribution and key statistics.</p>
+</div>
+<hr>
+
+<div class="cards-container">
+    {% for card in analysis_cards %}
+        <div class="analysis-card">
+            <h3>{{ card.column_name }}</h3>
+            <div class="card-content">
+                <div class="card-stats">
+                    <!-- This will now be styled correctly by the new CSS -->
+                    {{ card.stats_html|safe }}
+                </div>
+                <div class="card-plot">
+                    <img src="data:image/png;base64, {{ card.plot_b64 }}" alt="Histogram for {{ card.column_name }}">
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No numerical columns found in the dataset.</p>
+    {% endfor %}
+</div>

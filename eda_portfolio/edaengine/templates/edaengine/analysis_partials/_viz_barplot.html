@@ -1,0 +1,49 @@
+<div class="page-header">
+    <h1>Bar Plots</h1>
+    <p>Select a categorical and a numerical variable to compare the average of the numerical value across each category.</p>
+</div>
+<hr>
+
+<div class="analysis-card">
+    <form method="GET" action="{% url 'analysis_tool' tool_name='viz_barplot' %}">
+        <h3>Select Variables</h3>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="cat_col">Select Categorical Variable (X-Axis):</label>
+                <!-- Add the form-control class to the select element -->
+                <select name="cat_col" id="cat_col" class="form-control">
+                    <option value="">-- Select --</option>
+                    {% for col in categorical_columns %}
+                        <option value="{{ col }}" {% if col == selected_cat %}selected{% endif %}>{{ col }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="num_col">Select Numerical Variable (Y-Axis):</label>
+                <!-- Add the form-control class to the select element -->
+                <select name="num_col" id="num_col" class="form-control">
+                    <option value="">-- Select --</option>
+                    {% for col in numerical_columns %}
+                        <option value="{{ col }}" {% if col == selected_num %}selected{% endif %}>{{ col }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <!-- Add an empty label for vertical alignment -->
+                <label> </label>
+                <!-- Add the btn-apply-actions class to the button -->
+                <button type="submit" class="btn-apply-actions">Generate Plot</button>
+            </div>
+        </div>
+    </form>
+
+    {% if plot_b64 %}
+        <hr>
+        <div class="plot-result-container">
+            <h3>Result: Average {{ selected_num }} by {{ selected_cat }}</h3>
+            <div class="plot-item-full-width">
+                <img src="data:image/png;base64, {{ plot_b64 }}" alt="Bar plot of {{ selected_cat }} vs {{ selected_num }}">
+            </div>
+        </div>
+    {% endif %}
+</div>

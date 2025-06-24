@@ -1,0 +1,29 @@
+{% for item in items %}
+    {% if item.sub_items %}
+        <li class="has-submenu">
+            <a href="#" class="submenu-toggle">
+                {% if item.icon %}
+                    <i class="{{ item.icon }}"></i>
+                {% else %}
+                    <i class="fas fa-folder"></i>
+                {% endif %}
+                <span>{{ item.name }}</span>
+                <i class="fas fa-chevron-down a-right"></i>
+            </a>
+            <ul class="submenu">
+                {% include 'edaengine/_menu_level.html' with items=item.sub_items %}
+            </ul>
+        </li>
+    {% else %}
+        <li {% if item.url_name == selected_tool %}class="active"{% endif %}>
+            <a href="{% url 'analysis_tool' tool_name=item.url_name %}">
+                {% if item.icon %}
+                    <i class="{{ item.icon }}"></i>
+                {% else %}
+                    <i class="fas fa-file-alt"></i>
+                {% endif %}
+                <span>{{ item.name }}</span>
+            </a>
+        </li>
+    {% endif %}
+{% endfor %}

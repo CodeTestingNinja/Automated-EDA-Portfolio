@@ -1,0 +1,72 @@
+<div class="page-header">
+    <h1>Analysis Summary & Report</h1>
+    <p>This page summarizes the current state of your dataset after all cleaning and transformation steps. You can download this report as a PDF.</p>
+</div>
+<hr>
+
+<!-- A grid for the top-level stats -->
+<div class="summary-grid">
+    <div class="analysis-card text-center">
+        <h3>Dataset Overview</h3>
+        <p class="stat-big">{{ shape.0 }}</p>
+        <p class="stat-label">Rows</p>
+        <p class="stat-big">{{ shape.1 }}</p>
+        <p class="stat-label">Columns</p>
+    </div>
+    <div class="analysis-card">
+        <h3>Missing Values</h3>
+        {{ missing_values|safe }}
+    </div>
+</div>
+
+<!-- Data Head Card -->
+<div class="analysis-card">
+    <h3>Data Head</h3>
+    {{ table|safe }}
+</div>
+
+<div class="analysis-card">
+    <h3>Descriptive Statistics</h3>
+    {{ descriptive_stats|safe }} <!-- We need to make sure this is passed from the view -->
+</div>
+
+<!-- Visualizations Card -->
+<div class="analysis-card">
+    <h3>Key Visualizations</h3>
+    <hr>
+    <h4>Correlation Heatmap</h4>
+    <div class="text-center">
+        {% if report_plots.correlation_heatmap %}
+            <img src="data:image/png;base64, {{ report_plots.correlation_heatmap }}" style="max-width: 80%;" alt="Correlation Heatmap">
+        {% else %}
+            <p>Not available.</p>
+        {% endif %}
+    </div>
+    
+    <hr>
+    <h4>Distributions of Numerical Columns</h4>
+    <div class="summary-dist-plots">
+        {% for plot_b64 in report_plots.distributions %}
+            <img src="data:image/png;base64, {{ plot_b64 }}" alt="Distribution Plot">
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Download and Finish Section -->
+<div class="download-section">
+    <h3>Download Report & Finish</h3>
+    <p>Click a button below to generate a PDF version of this summary, or proceed to the final step.</p>
+    <div class="form-row" style="justify-content: center;">
+        <form method="POST" action="{% url 'analysis_tool' tool_name='analysis_summary' %}" style="margin: 0 10px;">
+            {% csrf_token %}
+            <button type="submit" name="download_pdf" class="btn-download">
+                <i class="fas fa-file-pdf"></i> Download as PDF
+            </button>
+        </form>
+        <form method="GET" action="{% url 'feedback' %}" style="display: inline-block; margin: 0 10px;">
+            <button type="submit" class="btn-finish">
+                <i class="fas fa-check-circle"></i> Finish & Give Feedback
+            </button>
+        </form>
+    </div>
+</div>
