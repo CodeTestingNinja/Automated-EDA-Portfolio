@@ -131,7 +131,7 @@ def upload_file(request):
 
 # Analysis Workspace Page
 def analysis(request, tool_name=None):
-    if not request.session.get('csv_b64'):
+    if not request.session.get('csv_base64'):
         return HttpResponse("⚠️ No dataset uploaded. Please upload first.")
     
     # The list of tools for the sidebar
