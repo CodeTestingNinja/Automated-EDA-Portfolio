@@ -115,6 +115,8 @@ def upload_file(request):
             request.session['descriptive_stats'] = descriptive_stats
             request.session['missing_values'] = missing_values
 
+            request.session.save() # Force save the session before redirecting
+            
             # Pass the preview of the table to the upload page
             return redirect('analysis_tool', tool_name='analysis_overview')
         
@@ -247,6 +249,8 @@ def analysis(request, tool_name=None):
             update_session_with_df(request, df)
             request.session['flash_message'] = "Missing value actions applied successfully."
 
+            request.session.save() # Force save the session before redirecting
+            
             # Redirect back to the same page
             return redirect('analysis_tool', tool_name='analysis_missing')
         
@@ -684,6 +688,8 @@ def analysis(request, tool_name=None):
             update_session_with_df(request, df)
 
             request.session['flash_message'] = f"Action '{action}' applied successfully."
+
+            request.session.save() # Force save the session before redirecting
 
             return redirect('analysis_tool', tool_name='analysis_outliers')
 
